@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智学在线 - 开启你的学习之旅</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ffd700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 150px 2rem 100px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .btn-primary:hover {
+            background: #ffed4a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .section {
+            padding: 80px 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .categories {
+            background: #f8f9fa;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .course-image {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-tag {
+            display: inline-block;
+            background: #e8f4fd;
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .course-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .course-content p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .course-meta span {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .course-price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .features {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .features .section-title h2,
+        .features .section-title p {
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-item p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .stats {
+            background: #f8f9fa;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .cta {
+            background: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 60px 2rem 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #4a5568;
+            color: #a0aec0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">智学<span>在线</span></a>
+            <ul class="nav-links">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">全部课程</a></li>
+                <li><a href="#">学习路径</a></li>
+                <li><a href="#">讲师入驻</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>开启你的学习之旅</h1>
+            <p>海量优质课程，名师在线指导，助你实现技能提升与职业突破</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">立即开始学习</a>
+                <a href="#" class="btn btn-outline">浏览课程</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>课程分类</h2>
+                <p>探索丰富的学习领域，找到适合你的课程</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">💻</div>
+                    <h3>编程开发</h3>
+                    <p>Python、Java、前端开发等热门技术</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🎨</div>
+                    <h3>设计创意</h3>
+                    <p>UI设计、平面设计、视频剪辑</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📊</div>
+                    <h3>数据分析</h3>
+                    <p>大数据、人工智能、商业分析</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💼</div>
+                    <h3>职场技能</h3>
+                    <p>项目管理、沟通技巧、职业规划</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🌍</div>
+                    <h3>语言学习</h3>
+                    <p>英语、日语、韩语等多语种课程</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📷</div>
+                    <h3>摄影摄像</h3>
+                    <p>摄影技巧、后期处理、短视频制作</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>热门课程推荐</h2>
+                <p>精选优质课程，深受学员好评</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">🐍</div>
+                    <div class="course-content">
+                        <span class="course-tag">编程开发</span>
+                        <h3>Python零基础入门到精通</h3>
+                        <p>从零开始学习Python，掌握编程核心技能</p>
+                        <div class="course-meta">
+                            <span>👨‍🎓 12,580人已学</span>
+                            <span class="course-price">¥199</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">⚛️</div>
+                    <div class="course-content">
+                        <span class="course-tag">前端开发</span>
+                        <h3>React18实战开发课程</h3>
+                        <p>深入学习React框架，打造企业级应用</p>
+                        <div class="course-meta">
+                            <span>👨‍🎓 8,320人已学</span>
+                            <span class="course-price">¥299</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">🤖</div>
+                    <div class="course-content">
+                        <span class="course-tag">人工智能</span>
+                        <h3>机器学习与深度学习实战</h3>
+                        <p>掌握AI核心技术，引领未来科技</p>
+                        <div class="course-meta">
+                            <span>👨‍🎓 6,890人已学</span>
+                            <span class="course-price">¥399</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">🎨</div>
+                    <div class="course-content">
+                        <span class="course-tag">UI设计</span>
+                        <h3>UI设计从入门到精通</h3>
+                        <p>系统学习UI设计，打造精美界面</p>
+                        <div class="course-meta">
+                            <span>👨‍🎓 5,670人已学</span>
+                            <span class="course-price">¥249</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section features">
+        <div class="container">
+            <div class="section-title">
+                <h2>为什么选择我们</h2>
+                <p>专业的学习平台，助你高效成长</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎓</div>
+                    <h3>名师授课</h3>
+                    <p>行业专家亲自授课，分享实战经验</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📚</div>
+                    <h3>课程丰富</h3>
+                    <p>涵盖多个领域，满足不同学习需求</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⏰</div>
+                    <h3>随时随地</h3>
+                    <p>支持多端学习，碎片时间高效利用</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h3>认证证书</h3>
+                    <p>完成课程获得专业认证，提升竞争力</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>精品课程</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100万+</h3>
+                    <p>注册学员</p>
+                </div>
+                <div class="stat-item">
+                    <h3>200+</h3>
+                    <p>专业讲师</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>好评率</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta">
+        <div class="container">
+            <h2>准备好开始学习了吗？</h2>
+            <p>加入我们，与百万学员一起成长</p>
+            <a href="#" class="btn btn-primary">免费注册</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">公司介绍</a></li>
+                        <li><a href="#">联系我们</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">新闻动态</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">学习指南</a></li>
+                        <li><a href="#">退款政策</a></li>
+                        <li><a href="#">隐私条款</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>合作伙伴</h4>
+                    <ul>
+                        <li><a href="#">讲师入驻</a></li>
+                        <li><a href="#">企业培训</a></li>
+                        <li><a href="#">高校合作</a></li>
+                        <li><a href="#">广告合作</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">抖音号</a></li>
+                        <li><a href="#">B站账号</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 智学在线 版权所有 | 京ICP备XXXXXXXX号</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
