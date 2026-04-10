@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python基础课程 - 智学在线</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ffd700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 150px 2rem 80px;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .course-info {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .course-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .course-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .course-details {
+            flex: 2;
+        }
+
+        .course-details h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-details p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #ffd700;
+            color: #333;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #ffed4a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .section {
+            padding: 80px 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .curriculum {
+            background: #f8f9fa;
+        }
+
+        .curriculum-content {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .module {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 2rem;
+        }
+
+        .module:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .module h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .lesson {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-left: 3px solid #e8f4fd;
+            padding-left: 1rem;
+            transition: all 0.3s;
+        }
+
+        .lesson:hover {
+            border-left-color: #667eea;
+            background: #f8f9fa;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .lesson-icon {
+            width: 40px;
+            height: 40px;
+            background: #e8f4fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .lesson-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .lesson-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .instructor {
+            background: white;
+        }
+
+        .instructor-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .instructor-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .instructor-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .instructor-details {
+            flex: 2;
+        }
+
+        .instructor-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructor-details p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .instructor-bio {
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .testimonials {
+            background: #f8f9fa;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .faq {
+            background: white;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #e8f4fd;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 60px 2rem 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #4a5568;
+            color: #a0aec0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .course-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .instructor-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .course-details h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">智学<span>在线</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#">全部课程</a></li>
+                <li><a href="#">学习路径</a></li>
+                <li><a href="#">讲师入驻</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="course-header">
+        <div class="container">
+            <div class="course-info">
+                <div class="course-image">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Python%20programming%20course%20cover%20with%20snake%20logo%20and%20code%20symbols%2C%20modern%20design%2C%20blue%20background&image_size=square_hd" alt="Python基础课程">
+                </div>
+                <div class="course-details">
+                    <h1>Python基础课程</h1>
+                    <p>从零开始学习Python编程，掌握编程基础概念和核心技能，为后续的进阶学习打下坚实基础。</p>
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <span>📚</span>
+                            <span>30课时</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>👨‍🎓</span>
+                            <span>5,230人已学</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>⭐</span>
+                            <span>4.9分</span>
+                        </div>
+                        <div class="meta-item">
+                            <span>💰</span>
+                            <span>¥99</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary">立即报名</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section curriculum">
+        <div class="container">
+            <div class="section-title">
+                <h2>课程大纲</h2>
+                <p>系统全面的学习内容，循序渐进掌握Python基础</p>
+            </div>
+            <div class="curriculum-content">
+                <div class="module">
+                    <h3>模块一：Python入门</h3>
+                    <div class="lesson">
+                        <div class="lesson-icon">1</div>
+                        <div class="lesson-info">
+                            <h4>Python简介与环境搭建</h4>
+                            <p>了解Python的历史、特点和应用领域，安装Python环境</p>
+                        </div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-icon">2</div>
+                        <div class="lesson-info">
+                            <h4>第一个Python程序</h4>
+                            <p>学习基本的Python语法，编写Hello World程序</p>
+                        </div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-icon">3</div>
+                        <div class="lesson-info">
+                            <h4>Python基础语法</h4>
+                            <p>变量、数据类型、运算符等基本概念</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="module">
+                    <h3>模块二：Python核心数据结构</h3>
+                    <div class="lesson">
+                        <div class="lesson-icon">4</div>
+                        <div class="lesson-info">
+                            <h4>列表与元组</h4>
+                            <p>学习列表和元组的基本操作和使用场景</p>
+                        </div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-icon">5</div>
+                        <div class="lesson-info">
+                            <h4>字典与集合</h4>
+                            <p>掌握字典和集合的使用方法</p>
+                        </div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-icon">6</div>
+                        <div class="lesson-info">
+                            <h4>字符串操作</h4>
+                            <p>学习字符串的各种方法和操作</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="module">
+                    <h3>模块三：控制流程</h3>
+                    <div class="lesson">
+                        <div class="lesson-icon">7</div>
+                        <div class="lesson-info">
+                            <h4>条件语句</h4>
+                            <p>if-elif-else语句的使用</p>
+                        </div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-icon">8</div>
+                        <div class="lesson-info">
+                            <h4>循环语句</h4>
+                            <p>for循环和while循环的使用</p>
+                        </div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-icon">9</div>
+                        <div class="lesson-info">
+                            <h4>循环控制</h4>
+                            <p>break、continue和pass语句</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="module">
+                    <h3>模块四：函数与模块</h3>
+                    <div class="lesson">
+                        <div class="lesson-icon">10</div>
+                        <div class="lesson-info">
+                            <h4>函数定义与调用</h4>
+                            <p>学习如何定义和调用函数</p>
+                        </div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-icon">11</div>
+                        <div class="lesson-info">
+                            <h4>函数参数与返回值</h4>
+                            <p>了解函数的参数传递和返回值</p>
+                        </div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-icon">12</div>
+                        <div class="lesson-info">
+                            <h4>模块与包</h4>
+                            <p>学习如何导入和使用模块</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="module">
+                    <h3>模块五：文件操作与异常处理</h3>
+                    <div class="lesson">
+                        <div class="lesson-icon">13</div>
+                        <div class="lesson-info">
+                            <h4>文件读写操作</h4>
+                            <p>学习如何读写文件</p>
+                        </div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-icon">14</div>
+                        <div class="lesson-info">
+                            <h4>异常处理</h4>
+                            <p>try-except语句的使用</p>
+                        </div>
+                    </div>
+                    <div class="lesson">
+                        <div class="lesson-icon">15</div>
+                        <div class="lesson-info">
+                            <h4>项目实战</h4>
+                            <p>综合运用所学知识完成一个小项目</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section instructor">
+        <div class="container">
+            <div class="section-title">
+                <h2>讲师介绍</h2>
+                <p>专业讲师，丰富的教学经验</p>
+            </div>
+            <div class="instructor-content">
+                <div class="instructor-image">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20Python%20instructor%2C%20friendly%20smile%2C%20casual%20business%20attire%2C%20modern%20background&image_size=square" alt="讲师照片">
+                </div>
+                <div class="instructor-details">
+                    <h3>张老师</h3>
+                    <p>Python资深工程师 | 10年教学经验</p>
+                    <div class="instructor-bio">
+                        <p>张老师拥有10年Python开发经验，曾在多家知名科技公司担任高级工程师，参与过多个大型项目的开发。</p>
+                        <p>教学风格深入浅出，注重实战，善于将复杂的编程概念转化为易于理解的内容，让学员能够快速掌握Python编程技能。</p>
+                        <p>已培养学员超过10,000名，深受学员好评，是业内知名的Python教育专家。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>学员评价</h2>
+                <p>听听其他学员的学习体验</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "课程内容非常系统，从零基础开始，一步步引导我们学习Python。张老师的讲解非常清晰，例子也很生动，让我很快就入门了Python编程。"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">李</div>
+                        <div class="author-info">
+                            <h4>李明</h4>
+                            <p>软件专业学生</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "作为一名零基础的学习者，这个课程对我来说非常友好。老师的讲解方式很容易理解，课程内容安排也很合理，让我在短时间内就掌握了Python的基础。"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">王</div>
+                        <div class="author-info">
+                            <h4>王芳</h4>
+                            <p>市场部职员</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "课程质量很高，内容丰富，讲解详细。通过这个课程，我不仅学会了Python基础，还掌握了一些实用的编程技巧，对我的工作帮助很大。"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">张</div>
+                        <div class="author-info">
+                            <h4>张伟</h4>
+                            <p>数据分析师</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>常见问题</h2>
+                <p>解答你关心的问题</p>
+            </div>
+            <div class="faq-content">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>这门课程适合零基础学习者吗？</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        是的，这门课程专门为零基础学习者设计，从最基本的概念开始讲解，循序渐进，帮助你逐步掌握Python编程技能。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>学习这门课程需要什么前置知识？</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        不需要任何编程经验，只要你对编程有兴趣，具备基本的计算机操作能力即可开始学习。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>课程有效期是多久？</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        课程购买后永久有效，你可以随时随地反复观看学习。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>学习过程中遇到问题怎么办？</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        我们提供专业的学习社区和技术支持，你可以在社区中提问，也可以直接联系讲师获取帮助。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta">
+        <div class="container">
+            <h2>准备好开始你的Python学习之旅了吗？</h2>
+            <p>加入我们，掌握未来职场必备技能</p>
+            <a href="#" class="btn btn-primary">立即报名</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">公司介绍</a></li>
+                        <li><a href="#">联系我们</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">新闻动态</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">学习指南</a></li>
+                        <li><a href="#">退款政策</a></li>
+                        <li><a href="#">隐私条款</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>合作伙伴</h4>
+                    <ul>
+                        <li><a href="#">讲师入驻</a></li>
+                        <li><a href="#">企业培训</a></li>
+                        <li><a href="#">高校合作</a></li>
+                        <li><a href="#">广告合作</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">抖音号</a></li>
+                        <li><a href="#">B站账号</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 智学在线 版权所有 | 京ICP备XXXXXXXX号</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ 展开/收起功能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('span:last-child');
+                
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                    icon.textContent = '▲';
+                } else {
+                    answer.style.display = 'none';
+                    icon.textContent = '▼';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
