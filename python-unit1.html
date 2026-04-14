@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python基础课程 - 第一个单元</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E6F7FF',
+                        secondary: '#F9F0F4',
+                        accent: '#E6FFE6',
+                        purple: '#F0E6FF',
+                        blue: '#667eea',
+                        pink: '#f472b6',
+                        green: '#34d399',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            }
+            .code-block {
+                background: #f8f9fa;
+                border-radius: 8px;
+                padding: 1rem;
+                font-family: 'Courier New', monospace;
+                overflow-x: auto;
+                border-left: 4px solid #667eea;
+            }
+            .note-box {
+                background: #E6F7FF;
+                border-radius: 8px;
+                padding: 1rem;
+                border-left: 4px solid #667eea;
+            }
+            .tip-box {
+                background: #E6FFE6;
+                border-radius: 8px;
+                padding: 1rem;
+                border-left: 4px solid #34d399;
+            }
+            .warning-box {
+                background: #FFF3CD;
+                border-radius: 8px;
+                padding: 1rem;
+                border-left: 4px solid #FFC107;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 bg-white bg-opacity-90 backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="python-course.html" class="text-xl font-bold text-blue-600">Python<span>基础课程</span></a>
+            <div class="hidden md:flex space-x-6">
+                <a href="python-course.html#course" class="text-gray-600 hover:text-blue-600 transition-colors">课程首页</a>
+                <a href="python-course.html#curriculum" class="text-gray-600 hover:text-blue-600 transition-colors">课程大纲</a>
+                <a href="python-unit1.html" class="text-blue-600 font-medium">单元一：精简核心语法</a>
+                <a href="python-course.html#instructor" class="text-gray-600 hover:text-blue-600 transition-colors">讲师介绍</a>
+                <a href="python-course.html#faq" class="text-gray-600 hover:text-blue-600 transition-colors">常见问题</a>
+                <a href="personal-portfolio.html" class="text-gray-600 hover:text-blue-600 transition-colors">个人主页</a>
+            </div>
+            <button class="md:hidden text-gray-600">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-primary to-secondary">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 text-shadow">单元一：精简核心语法</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    掌握Python的核心语法基础，为后续的学习和AI协作编程打下坚实的基础
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 单元内容 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <!-- 1. Python简介与环境搭建 -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3">1</span>
+                    Python简介与环境搭建
+                </h2>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">什么是Python？</h3>
+                    <p class="text-gray-600 mb-4">
+                        Python是一种简单易学、功能强大的编程语言，它被广泛应用于数据分析、人工智能、Web开发、自动化脚本等领域。Python的语法简洁明了，代码可读性高，非常适合初学者学习。
+                    </p>
+                    <div class="note-box mb-4">
+                        <p class="text-blue-700">
+                            <i class="fa fa-info-circle mr-2"></i>
+                            Python的特点：简单易学、代码可读性高、拥有丰富的库和工具、跨平台兼容性好、社区活跃
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">Python的应用领域</h3>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>数据分析与可视化</li>
+                        <li>人工智能与机器学习</li>
+                        <li>Web开发（Django、Flask等框架）</li>
+                        <li>自动化脚本与运维</li>
+                        <li>科学计算与数值分析</li>
+                        <li>游戏开发</li>
+                        <li>网络爬虫</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">环境搭建步骤</h3>
+                    <ol class="list-decimal pl-6 text-gray-600 space-y-3">
+                        <li>
+                            <strong>下载Python安装包</strong>
+                            <p class="mt-1">访问 <a href="https://www.python.org/downloads/" target="_blank" class="text-blue-500 hover:underline">Python官方网站</a>，下载适合你操作系统的Python安装包（推荐下载最新的稳定版本）。</p>
+                        </li>
+                        <li>
+                            <strong>安装Python</strong>
+                            <p class="mt-1">运行安装包，在安装过程中，请确保勾选"Add Python to PATH"选项，这样可以在命令行中直接使用Python命令。</p>
+                        </li>
+                        <li>
+                            <strong>验证安装</strong>
+                            <p class="mt-1">安装完成后，打开命令行（Windows下打开cmd，Mac/Linux下打开终端），输入以下命令验证Python是否安装成功：</p>
+                            <div class="code-block mt-2 mb-2">
+                                python --version
+                            </div>
+                            <p>如果显示Python的版本号，则说明安装成功。</p>
+                        </li>
+                        <li>
+                            <strong>选择IDE</strong>
+                            <p class="mt-1">推荐使用以下IDE进行Python开发：</p>
+                            <ul class="list-disc pl-6 mt-2 space-y-1">
+                                <li>PyCharm：功能强大的Python IDE，有社区版（免费）和专业版</li>
+                                <li>Visual Studio Code：轻量级编辑器，安装Python插件后也很好用</li>
+                                <li>Jupyter Notebook：适合数据分析和学习的交互式环境</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- 2. 变量与数据类型 -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3">2</span>
+                    变量与数据类型
+                </h2>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">什么是变量？</h3>
+                    <p class="text-gray-600 mb-4">
+                        变量是用来存储数据的容器，在Python中，变量不需要声明类型，可以直接赋值使用。
+                    </p>
+                    <div class="code-block mb-4">
+# 变量赋值示例
+name = "张三"
+age = 18
+height = 1.75
+is_student = True
+
+print(name)
+print(age)
+print(height)
+print(is_student)
+                    </div>
+                    <div class="tip-box">
+                        <p class="text-green-700">
+                            <i class="fa fa-lightbulb-o mr-2"></i>
+                            Python变量命名规则：只能包含字母、数字和下划线，不能以数字开头，区分大小写
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">Python的基本数据类型</h3>
+                    <table class="w-full border-collapse mb-4">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="border p-3 text-left">数据类型</th>
+                                <th class="border p-3 text-left">描述</th>
+                                <th class="border p-3 text-left">示例</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border p-3">整数 (int)</td>
+                                <td class="border p-3">整数，包括正整数、负整数和零</td>
+                                <td class="border p-3">10, -5, 0</td>
+                            </tr>
+                            <tr>
+                                <td class="border p-3">浮点数 (float)</td>
+                                <td class="border p-3">带有小数点的数字</td>
+                                <td class="border p-3">3.14, -2.5, 0.0</td>
+                            </tr>
+                            <tr>
+                                <td class="border p-3">字符串 (str)</td>
+                                <td class="border p-3">文本数据，用引号括起来</td>
+                                <td class="border p-3">"Hello", 'Python'</td>
+                            </tr>
+                            <tr>
+                                <td class="border p-3">布尔值 (bool)</td>
+                                <td class="border p-3">表示真或假</td>
+                                <td class="border p-3">True, False</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">数据类型转换</h3>
+                    <p class="text-gray-600 mb-4">
+                        Python提供了内置函数来进行数据类型转换：
+                    </p>
+                    <div class="code-block mb-4">
+# 数据类型转换示例
+
+# 转换为整数
+num_str = "123"
+num_int = int(num_str)
+print(num_int)  # 输出: 123
+
+# 转换为浮点数
+num_int = 123
+num_float = float(num_int)
+print(num_float)  # 输出: 123.0
+
+# 转换为字符串
+num = 123
+num_str = str(num)
+print(num_str)  # 输出: "123"
+
+# 转换为布尔值
+print(bool(0))  # 输出: False
+print(bool(1))  # 输出: True
+print(bool(""))  # 输出: False
+print(bool("Hello"))  # 输出: True
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 3. 控制流 -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3">3</span>
+                    控制流
+                </h2>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">条件语句 (if-elif-else)</h3>
+                    <p class="text-gray-600 mb-4">
+                        条件语句用于根据不同的条件执行不同的代码块。
+                    </p>
+                    <div class="code-block mb-4">
+# 条件语句示例
+age = 18
+
+if age < 18:
+    print("未成年")
+elif age >= 18 and age < 60:
+    print("成年人")
+else:
+    print("老年人")
+                    </div>
+                    <div class="tip-box">
+                        <p class="text-green-700">
+                            <i class="fa fa-lightbulb-o mr-2"></i>
+                            注意Python的缩进规则：条件语句后面的代码块必须缩进，通常使用4个空格或1个制表符
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">循环语句</h3>
+                    
+                    <h4 class="text-lg font-medium text-gray-700 mb-2">for循环</h4>
+                    <p class="text-gray-600 mb-3">
+                        for循环用于遍历序列（如列表、元组、字符串等）中的元素。
+                    </p>
+                    <div class="code-block mb-4">
+# for循环示例
+fruits = ["苹果", "香蕉", "橙子"]
+
+for fruit in fruits:
+    print(f"我喜欢吃{fruit}")
+
+# 遍历数字范围
+for i in range(5):
+    print(i)
+                    </div>
+                    
+                    <h4 class="text-lg font-medium text-gray-700 mb-2 mt-4">while循环</h4>
+                    <p class="text-gray-600 mb-3">
+                        while循环在条件为真时重复执行代码块。
+                    </p>
+                    <div class="code-block mb-4">
+# while循环示例
+count = 0
+
+while count < 5:
+    print(f" count: {count}")
+    count += 1
+                    </div>
+                    <div class="warning-box">
+                        <p class="text-yellow-700">
+                            <i class="fa fa-exclamation-triangle mr-2"></i>
+                            注意：使用while循环时要确保条件最终会变为假，否则会导致无限循环
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">循环控制语句</h3>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-3">
+                        <li>
+                            <strong>break</strong>：跳出当前循环
+                            <div class="code-block mt-2 mb-2">
+for i in range(10):
+    if i == 5:
+        break
+    print(i)
+                            </div>
+                        </li>
+                        <li>
+                            <strong>continue</strong>：跳过当前循环的剩余部分，进入下一次循环
+                            <div class="code-block mt-2 mb-2">
+for i in range(10):
+    if i % 2 == 0:
+        continue
+    print(i)  # 只打印奇数
+                            </div>
+                        </li>
+                        <li>
+                            <strong>pass</strong>：占位符，什么也不做
+                            <div class="code-block mt-2 mb-2">
+if True:
+    pass  # 暂时不做任何事情
+else:
+    print("这不会执行")
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 4. 函数定义与调用 -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3">4</span>
+                    函数定义与调用
+                </h2>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">什么是函数？</h3>
+                    <p class="text-gray-600 mb-4">
+                        函数是一段可重用的代码块，用于执行特定的任务。使用函数可以使代码更加模块化、可读性更高，并且可以避免重复代码。
+                    </p>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">定义函数</h3>
+                    <p class="text-gray-600 mb-4">
+                        使用<code>def</code>关键字定义函数：
+                    </p>
+                    <div class="code-block mb-4">
+# 定义一个简单的函数
+def greet(name):
+    """这是函数的文档字符串，用于说明函数的功能"""
+    print(f"你好，{name}！")
+
+# 调用函数
+greet("张三")
+greet("李四")
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">函数参数</h3>
+                    <p class="text-gray-600 mb-4">
+                        函数可以接受多个参数，包括位置参数、默认参数等：
+                    </p>
+                    <div class="code-block mb-4">
+# 带有默认参数的函数
+def calculate_total(price, tax_rate=0.06):
+    """计算总价，包括税费"""
+    total = price * (1 + tax_rate)
+    return total
+
+# 使用默认税率
+print(calculate_total(100))  # 输出: 106.0
+
+# 自定义税率
+print(calculate_total(100, 0.1))  # 输出: 110.0
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">函数返回值</h3>
+                    <p class="text-gray-600 mb-4">
+                        使用<code>return</code>语句返回函数的结果：
+                    </p>
+                    <div class="code-block mb-4">
+# 带有返回值的函数
+def add(a, b):
+    """计算两个数的和"""
+    return a + b
+
+# 调用函数并获取返回值
+result = add(3, 5)
+print(result)  # 输出: 8
+
+# 可以直接使用返回值
+print(add(10, 20))  # 输出: 30
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 5. 错误与异常处理 -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3">5</span>
+                    错误与异常处理
+                </h2>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">什么是异常？</h3>
+                    <p class="text-gray-600 mb-4">
+                        异常是程序运行过程中发生的错误，如除以零、访问不存在的文件等。如果不处理异常，程序会崩溃。
+                    </p>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">使用try-except处理异常</h3>
+                    <p class="text-gray-600 mb-4">
+                        使用<code>try-except</code>语句来捕获和处理异常：
+                    </p>
+                    <div class="code-block mb-4">
+try:
+    # 可能会引发异常的代码
+    num = int(input("请输入一个数字："))
+    result = 10 / num
+    print(f"结果是：{result}")
+except ValueError:
+    # 处理输入不是数字的情况
+    print("错误：请输入有效的数字")
+except ZeroDivisionError:
+    # 处理除以零的情况
+    print("错误：不能除以零")
+except Exception as e:
+    # 处理其他所有异常
+    print(f"发生错误：{e}")
+else:
+    # 如果没有异常发生，执行这里的代码
+    print("计算成功！")
+finally:
+    # 无论是否发生异常，都会执行这里的代码
+    print("程序执行完毕")
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">常见的异常类型</h3>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li><code>ValueError</code>：值错误，当传入无效的参数时引发</li>
+                        <li><code>ZeroDivisionError</code>：除以零错误</li>
+                        <li><code>TypeError</code>：类型错误，当操作或函数应用于不适当类型的对象时引发</li>
+                        <li><code>FileNotFoundError</code>：文件未找到错误</li>
+                        <li><code>IndexError</code>：索引错误，当访问列表等序列的不存在索引时引发</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 练习题目 -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">练习题目</h2>
+                
+                <div class="space-y-6">
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-3">练习1：变量与数据类型</h3>
+                        <p class="text-gray-600 mb-4">
+                            1. 创建变量存储你的姓名、年龄、身高和是否是学生
+                            2. 打印这些变量的值
+                            3. 将年龄转换为字符串，将身高转换为整数
+                            4. 打印转换后的值和类型
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-3">练习2：控制流</h3>
+                        <p class="text-gray-600 mb-4">
+                            1. 编写一个程序，根据用户输入的分数判断等级：
+                            - 90分及以上：优秀
+                            - 80-89分：良好
+                            - 70-79分：中等
+                            - 60-69分：及格
+                            - 60分以下：不及格
+                            2. 编写一个程序，使用循环打印1到100之间的所有偶数
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-3">练习3：函数</h3>
+                        <p class="text-gray-600 mb-4">
+                            1. 编写一个函数，计算两个数的乘积
+                            2. 编写一个函数，判断一个数是否是素数
+                            3. 编写一个函数，将列表中的所有元素转换为大写（如果是字符串）
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-3">练习4：异常处理</h3>
+                        <p class="text-gray-600 mb-4">
+                            1. 编写一个程序，使用异常处理来处理用户输入的除法运算
+                            2. 确保程序在用户输入非数字或除以零时不会崩溃
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 学习建议 -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">学习建议</h2>
+                
+                <div class="bg-primary rounded-lg p-6">
+                    <ul class="list-disc pl-6 text-gray-700 space-y-3">
+                        <li>先理解概念，再动手实践</li>
+                        <li>多编写代码，通过实践巩固知识</li>
+                        <li>遇到问题时，尝试自己解决，培养调试能力</li>
+                        <li>利用AI工具（如ChatGPT）帮助理解和解决问题</li>
+                        <li>参考官方文档和优质教程</li>
+                        <li>加入Python学习社区，与其他学习者交流</li>
+                        <li>从简单的小项目开始，逐步挑战更复杂的任务</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-4">© 2026 Python基础课程 版权所有 | 京ICP备XXXXXXXX号</p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fa fa-github text-xl"></i>
+                </a>
+                <a href="https://weixin.qq.com" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fa fa-weixin text-xl"></i>
+                </a>
+                <a href="https://weibo.com" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fa fa-weibo text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
