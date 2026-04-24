@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python基础课程 - 智学在线</title>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,20 +12,32 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #E6F7FF;
+            --secondary: #F0F9FF;
+            --accent: #DBF5FF;
+            --blue: #667eea;
+            --lightBlue: #93C5FD;
+            --skyBlue: #3B82F6;
+            --babyBlue: #A5F3FC;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
+            background-color: var(--primary);
         }
 
         .navbar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary);
             padding: 1rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
         }
 
         .navbar .container {
@@ -38,12 +51,12 @@
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: white;
+            color: var(--skyBlue);
             text-decoration: none;
         }
 
         .logo span {
-            color: #ffd700;
+            color: var(--blue);
         }
 
         .nav-links {
@@ -53,20 +66,21 @@
         }
 
         .nav-links a {
-            color: white;
+            color: var(--skyBlue);
             text-decoration: none;
             font-weight: 500;
-            transition: opacity 0.3s;
+            transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            opacity: 0.8;
+            color: var(--blue);
+            transform: translateY(-2px);
         }
 
         .course-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             padding: 150px 2rem 80px;
-            color: white;
+            color: var(--skyBlue);
         }
 
         .container {
@@ -89,7 +103,7 @@
         .course-image img {
             max-width: 100%;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .course-details {
@@ -99,24 +113,27 @@
         .course-details h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            color: var(--skyBlue);
         }
 
         .course-details p {
             font-size: 1.1rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            color: var(--blue);
         }
 
         .course-meta {
             display: flex;
             gap: 2rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .meta-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            color: var(--skyBlue);
         }
 
         .btn {
@@ -131,15 +148,16 @@
         }
 
         .btn-primary {
-            background: #ffd700;
-            color: #333;
+            background: var(--skyBlue);
+            color: white;
             display: inline-block;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.4);
         }
 
         .btn-primary:hover {
-            background: #ffed4a;
+            background: var(--blue);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
         }
 
         .section {
@@ -153,17 +171,17 @@
 
         .section-title h2 {
             font-size: 2.5rem;
-            color: #333;
+            color: var(--skyBlue);
             margin-bottom: 1rem;
         }
 
         .section-title p {
-            color: #666;
+            color: var(--blue);
             font-size: 1.1rem;
         }
 
         .curriculum {
-            background: #f8f9fa;
+            background: var(--secondary);
         }
 
         .curriculum-content {
@@ -175,7 +193,7 @@
 
         .module {
             margin-bottom: 2rem;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--accent);
             padding-bottom: 2rem;
         }
 
@@ -188,7 +206,7 @@
         .module h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
-            color: #667eea;
+            color: var(--skyBlue);
         }
 
         .lesson {
@@ -196,40 +214,43 @@
             align-items: center;
             gap: 1rem;
             padding: 1rem 0;
-            border-left: 3px solid #e8f4fd;
+            border-left: 3px solid var(--lightBlue);
             padding-left: 1rem;
             transition: all 0.3s;
         }
 
         .lesson:hover {
-            border-left-color: #667eea;
-            background: #f8f9fa;
+            border-left-color: var(--skyBlue);
+            background: var(--primary);
             border-radius: 0 10px 10px 0;
+            transform: translateX(5px);
         }
 
         .lesson-icon {
             width: 40px;
             height: 40px;
-            background: #e8f4fd;
+            background: var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
+            color: var(--skyBlue);
         }
 
         .lesson-info h4 {
             font-size: 1.1rem;
             margin-bottom: 0.3rem;
+            color: var(--skyBlue);
         }
 
         .lesson-info p {
-            color: #666;
+            color: var(--blue);
             font-size: 0.9rem;
         }
 
         .instructor {
-            background: white;
+            background: var(--primary);
         }
 
         .instructor-content {
@@ -249,6 +270,7 @@
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 4px solid var(--lightBlue);
         }
 
         .instructor-details {
@@ -258,10 +280,11 @@
         .instructor-details h3 {
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
+            color: var(--skyBlue);
         }
 
         .instructor-details p {
-            color: #666;
+            color: var(--blue);
             margin-bottom: 1rem;
         }
 
@@ -271,7 +294,7 @@
         }
 
         .testimonials {
-            background: #f8f9fa;
+            background: var(--secondary);
         }
 
         .testimonial-grid {
@@ -285,12 +308,19 @@
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .testimonial-text {
             font-style: italic;
             margin-bottom: 1.5rem;
             line-height: 1.6;
+            color: #333;
         }
 
         .testimonial-author {
@@ -303,7 +333,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #667eea;
+            background: var(--skyBlue);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -313,26 +343,32 @@
 
         .author-info h4 {
             margin-bottom: 0.2rem;
+            color: var(--skyBlue);
         }
 
         .author-info p {
-            color: #666;
+            color: var(--blue);
             font-size: 0.9rem;
         }
 
         .faq {
-            background: white;
+            background: var(--primary);
         }
 
         .faq-item {
             margin-bottom: 1.5rem;
-            border: 1px solid #eee;
+            border: 1px solid var(--lightBlue);
             border-radius: 10px;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         .faq-question {
-            background: #f8f9fa;
+            background: var(--accent);
             padding: 1.5rem;
             cursor: pointer;
             display: flex;
@@ -340,21 +376,24 @@
             align-items: center;
             font-weight: 600;
             transition: background 0.3s;
+            color: var(--skyBlue);
         }
 
         .faq-question:hover {
-            background: #e8f4fd;
+            background: var(--lightBlue);
+            color: white;
         }
 
         .faq-answer {
             padding: 1.5rem;
-            color: #666;
+            color: var(--blue);
             line-height: 1.6;
+            background: white;
         }
 
         .cta {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--skyBlue);
             text-align: center;
         }
 
@@ -366,11 +405,10 @@
         .cta p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
         }
 
         footer {
-            background: #2d3748;
+            background: var(--skyBlue);
             color: white;
             padding: 60px 2rem 30px;
         }
@@ -385,7 +423,7 @@
         .footer-col h4 {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
-            color: #ffd700;
+            color: var(--babyBlue);
         }
 
         .footer-col ul {
@@ -397,20 +435,83 @@
         }
 
         .footer-col ul li a {
-            color: #cbd5e0;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .footer-col ul li a:hover {
-            color: #ffd700;
+            color: var(--babyBlue);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid #4a5568;
-            color: #a0aec0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* 可爱装饰元素 */
+        .heart {
+            position: absolute;
+            color: #FF6B9D;
+            font-size: 20px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: drift 20s linear infinite;
+            z-index: 0;
+        }
+        @keyframes drift {
+            0% { transform: translateX(-200px); }
+            100% { transform: translateX(calc(100vw + 200px)); }
+        }
+        .star {
+            position: absolute;
+            color: #FFD700;
+            font-size: 16px;
+            animation: twinkle 2s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.3; transform: scale(1); }
+        }
+        .butterfly {
+            position: absolute;
+            font-size: 16px;
+            animation: flutter 4s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes flutter {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -10px) rotate(10deg); }
+            50% { transform: translate(40px, 0) rotate(0deg); }
+            75% { transform: translate(20px, 10px) rotate(-10deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+        .sparkle {
+            position: absolute;
+            color: #FFD700;
+            animation: sparkle 2s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes sparkle {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
         }
 
         @media (max-width: 768px) {
@@ -439,6 +540,30 @@
     </style>
 </head>
 <body>
+    <!-- 可爱装饰元素 -->
+    <!-- 心形 -->
+    <div class="heart" style="top: 100px; left: 50px; animation-delay: 0s;"><i class="fa fa-heart"></i></div>
+    <div class="heart" style="top: 150px; right: 80px; animation-delay: 0.5s; color: #FFB6C1;"><i class="fa fa-heart"></i></div>
+    <div class="heart" style="top: 200px; left: 120px; animation-delay: 1s; color: #FF69B4;"><i class="fa fa-heart"></i></div>
+    
+    <!-- 云朵 -->
+    <div class="cloud" style="width: 60px; height: 30px; top: 80px; animation-delay: 0s;"></div>
+    <div class="cloud" style="width: 80px; height: 40px; top: 120px; animation-delay: 5s;"></div>
+    <div class="cloud" style="width: 50px; height: 25px; top: 160px; animation-delay: 10s;"></div>
+    
+    <!-- 星星 -->
+    <div class="star" style="top: 90px; left: 200px; animation-delay: 0s;"><i class="fa fa-star"></i></div>
+    <div class="star" style="top: 130px; right: 150px; animation-delay: 0.7s;"><i class="fa fa-star"></i></div>
+    <div class="star" style="top: 170px; left: 250px; animation-delay: 1.4s;"><i class="fa fa-star"></i></div>
+    
+    <!-- 蝴蝶 -->
+    <div class="butterfly" style="top: 100px; left: 300px; animation-delay: 0s; color: #FF69B4;"><i class="fa fa-paper-plane"></i></div>
+    <div class="butterfly" style="top: 140px; right: 200px; animation-delay: 1s; color: #87CEEB;"><i class="fa fa-paper-plane"></i></div>
+    
+    <!-- 闪烁星星 -->
+    <div class="sparkle" style="top: 110px; left: 150px; animation-delay: 0s;"><i class="fa fa-star"></i></div>
+    <div class="sparkle" style="top: 150px; right: 250px; animation-delay: 1s;"><i class="fa fa-star"></i></div>
+    
     <nav class="navbar">
         <div class="container">
             <a href="python-course.html" class="logo">Python<span>基础课程</span></a>
