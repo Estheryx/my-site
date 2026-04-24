@@ -6,6 +6,11 @@
     <title>Python基础课程 - 第一个单元</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/theme/monokai.css">
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/mode/python/python.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pyodide@0.24.1/pyodide.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -56,6 +61,94 @@
                 border-radius: 8px;
                 padding: 1rem;
                 border-left: 4px solid #FFC107;
+            }
+            .code-runner {
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+            }
+            .code-runner.floating {
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                width: 400px;
+                max-width: 90vw;
+                z-index: 1000;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+            .code-runner-header {
+                background: #f8f9fa;
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #e2e8f0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .code-runner-title {
+                font-weight: 600;
+                color: #333;
+            }
+            .code-runner-actions {
+                display: flex;
+                gap: 0.5rem;
+            }
+            .code-runner-btn-float {
+                background: #f8f9fa;
+                color: #333;
+                border: 1px solid #e2e8f0;
+            }
+            .code-runner-btn-float:hover {
+                background: #e2e8f0;
+            }
+            .code-runner-btn-reset {
+                background: #fef3c7;
+                color: #d97706;
+            }
+            .code-runner-btn-reset:hover {
+                background: #fde68a;
+            }
+            .code-runner-btn {
+                padding: 0.25rem 0.75rem;
+                border-radius: 4px;
+                font-size: 0.875rem;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            .code-runner-btn-run {
+                background: #667eea;
+                color: white;
+            }
+            .code-runner-btn-run:hover {
+                background: #5a6fd8;
+            }
+            .code-runner-btn-collapse {
+                background: #e2e8f0;
+                color: #333;
+            }
+            .code-runner-btn-collapse:hover {
+                background: #cbd5e0;
+            }
+            .code-runner-content {
+                position: relative;
+            }
+            .code-editor {
+                height: 300px;
+            }
+            .code-output {
+                background: #f8f9fa;
+                border-top: 1px solid #e2e8f0;
+                padding: 1rem;
+                font-family: 'Courier New', monospace;
+                white-space: pre-wrap;
+                min-height: 100px;
+                max-height: 200px;
+                overflow-y: auto;
+            }
+            .code-output.error {
+                background: #fef2f2;
+                color: #dc2626;
             }
         }
     </style>
@@ -171,8 +264,17 @@
                     <p class="text-gray-600 mb-4">
                         变量是用来存储数据的容器，在Python中，变量不需要声明类型，可以直接赋值使用。
                     </p>
-                    <div class="code-block mb-4">
-# 变量赋值示例
+                    <div class="code-runner mb-4">
+                        <div class="code-runner-header">
+                            <div class="code-runner-title">代码示例：变量赋值</div>
+                            <div class="code-runner-actions">
+                                <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                            </div>
+                        </div>
+                        <div class="code-runner-content">
+                            <div class="code-editor">
+                                <textarea># 变量赋值示例
 name = "张三"
 age = 18
 height = 1.75
@@ -181,7 +283,10 @@ is_student = True
 print(name)
 print(age)
 print(height)
-print(is_student)
+print(is_student)</textarea>
+                            </div>
+                            <div class="code-output">点击运行按钮查看输出</div>
+                        </div>
                     </div>
                     <div class="tip-box">
                         <p class="text-green-700">
@@ -231,8 +336,17 @@ print(is_student)
                     <p class="text-gray-600 mb-4">
                         Python提供了内置函数来进行数据类型转换：
                     </p>
-                    <div class="code-block mb-4">
-# 数据类型转换示例
+                    <div class="code-runner mb-4">
+                        <div class="code-runner-header">
+                            <div class="code-runner-title">代码示例：数据类型转换</div>
+                            <div class="code-runner-actions">
+                                <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                            </div>
+                        </div>
+                        <div class="code-runner-content">
+                            <div class="code-editor">
+                                <textarea># 数据类型转换示例
 
 # 转换为整数
 num_str = "123"
@@ -253,7 +367,10 @@ print(num_str)  # 输出: "123"
 print(bool(0))  # 输出: False
 print(bool(1))  # 输出: True
 print(bool(""))  # 输出: False
-print(bool("Hello"))  # 输出: True
+print(bool("Hello"))  # 输出: True</textarea>
+                            </div>
+                            <div class="code-output">点击运行按钮查看输出</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -270,8 +387,17 @@ print(bool("Hello"))  # 输出: True
                     <p class="text-gray-600 mb-4">
                         条件语句用于根据不同的条件执行不同的代码块。
                     </p>
-                    <div class="code-block mb-4">
-# 条件语句示例
+                    <div class="code-runner mb-4">
+                        <div class="code-runner-header">
+                            <div class="code-runner-title">代码示例：条件语句</div>
+                            <div class="code-runner-actions">
+                                <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                            </div>
+                        </div>
+                        <div class="code-runner-content">
+                            <div class="code-editor">
+                                <textarea># 条件语句示例
 age = 18
 
 if age < 18:
@@ -279,7 +405,10 @@ if age < 18:
 elif age >= 18 and age < 60:
     print("成年人")
 else:
-    print("老年人")
+    print("老年人")</textarea>
+                            </div>
+                            <div class="code-output">点击运行按钮查看输出</div>
+                        </div>
                     </div>
                     <div class="tip-box">
                         <p class="text-green-700">
@@ -296,8 +425,17 @@ else:
                     <p class="text-gray-600 mb-3">
                         for循环用于遍历序列（如列表、元组、字符串等）中的元素。
                     </p>
-                    <div class="code-block mb-4">
-# for循环示例
+                    <div class="code-runner mb-4">
+                        <div class="code-runner-header">
+                            <div class="code-runner-title">代码示例：for循环</div>
+                            <div class="code-runner-actions">
+                                <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                            </div>
+                        </div>
+                        <div class="code-runner-content">
+                            <div class="code-editor">
+                                <textarea># for循环示例
 fruits = ["苹果", "香蕉", "橙子"]
 
 for fruit in fruits:
@@ -305,20 +443,35 @@ for fruit in fruits:
 
 # 遍历数字范围
 for i in range(5):
-    print(i)
+    print(i)</textarea>
+                            </div>
+                            <div class="code-output">点击运行按钮查看输出</div>
+                        </div>
                     </div>
                     
                     <h4 class="text-lg font-medium text-gray-700 mb-2 mt-4">while循环</h4>
                     <p class="text-gray-600 mb-3">
                         while循环在条件为真时重复执行代码块。
                     </p>
-                    <div class="code-block mb-4">
-# while循环示例
+                    <div class="code-runner mb-4">
+                        <div class="code-runner-header">
+                            <div class="code-runner-title">代码示例：while循环</div>
+                            <div class="code-runner-actions">
+                                <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                            </div>
+                        </div>
+                        <div class="code-runner-content">
+                            <div class="code-editor">
+                                <textarea># while循环示例
 count = 0
 
 while count < 5:
     print(f" count: {count}")
-    count += 1
+    count += 1</textarea>
+                            </div>
+                            <div class="code-output">点击运行按钮查看输出</div>
+                        </div>
                     </div>
                     <div class="warning-box">
                         <p class="text-yellow-700">
@@ -330,32 +483,68 @@ while count < 5:
                 
                 <div class="mb-6">
                     <h3 class="text-xl font-semibold text-gray-700 mb-3">循环控制语句</h3>
-                    <ul class="list-disc pl-6 text-gray-600 space-y-3">
+                    <ul class="list-disc pl-6 text-gray-600 space-y-4">
                         <li>
                             <strong>break</strong>：跳出当前循环
-                            <div class="code-block mt-2 mb-2">
-for i in range(10):
+                            <div class="code-runner mt-2 mb-2">
+                                <div class="code-runner-header">
+                                    <div class="code-runner-title">代码示例：break语句</div>
+                                    <div class="code-runner-actions">
+                                        <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                        <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                                    </div>
+                                </div>
+                                <div class="code-runner-content">
+                                    <div class="code-editor">
+                                        <textarea>for i in range(10):
     if i == 5:
         break
-    print(i)
+    print(i)</textarea>
+                                    </div>
+                                    <div class="code-output">点击运行按钮查看输出</div>
+                                </div>
                             </div>
                         </li>
                         <li>
                             <strong>continue</strong>：跳过当前循环的剩余部分，进入下一次循环
-                            <div class="code-block mt-2 mb-2">
-for i in range(10):
+                            <div class="code-runner mt-2 mb-2">
+                                <div class="code-runner-header">
+                                    <div class="code-runner-title">代码示例：continue语句</div>
+                                    <div class="code-runner-actions">
+                                        <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                        <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                                    </div>
+                                </div>
+                                <div class="code-runner-content">
+                                    <div class="code-editor">
+                                        <textarea>for i in range(10):
     if i % 2 == 0:
         continue
-    print(i)  # 只打印奇数
+    print(i)  # 只打印奇数</textarea>
+                                    </div>
+                                    <div class="code-output">点击运行按钮查看输出</div>
+                                </div>
                             </div>
                         </li>
                         <li>
                             <strong>pass</strong>：占位符，什么也不做
-                            <div class="code-block mt-2 mb-2">
-if True:
+                            <div class="code-runner mt-2 mb-2">
+                                <div class="code-runner-header">
+                                    <div class="code-runner-title">代码示例：pass语句</div>
+                                    <div class="code-runner-actions">
+                                        <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                        <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                                    </div>
+                                </div>
+                                <div class="code-runner-content">
+                                    <div class="code-editor">
+                                        <textarea>if True:
     pass  # 暂时不做任何事情
 else:
-    print("这不会执行")
+    print("这不会执行")</textarea>
+                                    </div>
+                                    <div class="code-output">点击运行按钮查看输出</div>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -381,15 +570,27 @@ else:
                     <p class="text-gray-600 mb-4">
                         使用<code>def</code>关键字定义函数：
                     </p>
-                    <div class="code-block mb-4">
-# 定义一个简单的函数
+                    <div class="code-runner mb-4">
+                        <div class="code-runner-header">
+                            <div class="code-runner-title">代码示例：定义函数</div>
+                            <div class="code-runner-actions">
+                                <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                            </div>
+                        </div>
+                        <div class="code-runner-content">
+                            <div class="code-editor">
+                                <textarea># 定义一个简单的函数
 def greet(name):
     """这是函数的文档字符串，用于说明函数的功能"""
     print(f"你好，{name}！")
 
 # 调用函数
 greet("张三")
-greet("李四")
+greet("李四")</textarea>
+                            </div>
+                            <div class="code-output">点击运行按钮查看输出</div>
+                        </div>
                     </div>
                 </div>
                 
@@ -398,8 +599,17 @@ greet("李四")
                     <p class="text-gray-600 mb-4">
                         函数可以接受多个参数，包括位置参数、默认参数等：
                     </p>
-                    <div class="code-block mb-4">
-# 带有默认参数的函数
+                    <div class="code-runner mb-4">
+                        <div class="code-runner-header">
+                            <div class="code-runner-title">代码示例：函数参数</div>
+                            <div class="code-runner-actions">
+                                <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                            </div>
+                        </div>
+                        <div class="code-runner-content">
+                            <div class="code-editor">
+                                <textarea># 带有默认参数的函数
 def calculate_total(price, tax_rate=0.06):
     """计算总价，包括税费"""
     total = price * (1 + tax_rate)
@@ -409,7 +619,10 @@ def calculate_total(price, tax_rate=0.06):
 print(calculate_total(100))  # 输出: 106.0
 
 # 自定义税率
-print(calculate_total(100, 0.1))  # 输出: 110.0
+print(calculate_total(100, 0.1))  # 输出: 110.0</textarea>
+                            </div>
+                            <div class="code-output">点击运行按钮查看输出</div>
+                        </div>
                     </div>
                 </div>
                 
@@ -418,8 +631,17 @@ print(calculate_total(100, 0.1))  # 输出: 110.0
                     <p class="text-gray-600 mb-4">
                         使用<code>return</code>语句返回函数的结果：
                     </p>
-                    <div class="code-block mb-4">
-# 带有返回值的函数
+                    <div class="code-runner mb-4">
+                        <div class="code-runner-header">
+                            <div class="code-runner-title">代码示例：函数返回值</div>
+                            <div class="code-runner-actions">
+                                <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                            </div>
+                        </div>
+                        <div class="code-runner-content">
+                            <div class="code-editor">
+                                <textarea># 带有返回值的函数
 def add(a, b):
     """计算两个数的和"""
     return a + b
@@ -429,7 +651,10 @@ result = add(3, 5)
 print(result)  # 输出: 8
 
 # 可以直接使用返回值
-print(add(10, 20))  # 输出: 30
+print(add(10, 20))  # 输出: 30</textarea>
+                            </div>
+                            <div class="code-output">点击运行按钮查看输出</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -453,8 +678,17 @@ print(add(10, 20))  # 输出: 30
                     <p class="text-gray-600 mb-4">
                         使用<code>try-except</code>语句来捕获和处理异常：
                     </p>
-                    <div class="code-block mb-4">
-try:
+                    <div class="code-runner mb-4">
+                        <div class="code-runner-header">
+                            <div class="code-runner-title">代码示例：异常处理</div>
+                            <div class="code-runner-actions">
+                                <button class="code-runner-btn code-runner-btn-run">运行</button>
+                                <button class="code-runner-btn code-runner-btn-collapse">折叠</button>
+                            </div>
+                        </div>
+                        <div class="code-runner-content">
+                            <div class="code-editor">
+                                <textarea>try:
     # 可能会引发异常的代码
     num = int(input("请输入一个数字："))
     result = 10 / num
@@ -473,7 +707,10 @@ else:
     print("计算成功！")
 finally:
     # 无论是否发生异常，都会执行这里的代码
-    print("程序执行完毕")
+    print("程序执行完毕")</textarea>
+                            </div>
+                            <div class="code-output">点击运行按钮查看输出</div>
+                        </div>
                     </div>
                 </div>
                 
@@ -572,5 +809,176 @@ finally:
             </div>
         </div>
     </footer>
+
+    <script>
+        // 全局变量
+        let pyodide;
+        let codeEditors = {};
+        let originalCodes = {};
+
+        // 初始化Pyodide
+        async function initPyodide() {
+            try {
+                pyodide = await loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/npm/pyodide@0.24.1/"
+                });
+                console.log('Pyodide initialized successfully');
+            } catch (error) {
+                console.error('Failed to initialize Pyodide:', error);
+            }
+        }
+
+        // 初始化代码编辑器
+        function initCodeEditors() {
+            document.querySelectorAll('.code-runner').forEach((runner, index) => {
+                const editorElement = runner.querySelector('.code-editor');
+                const textarea = editorElement.querySelector('textarea');
+                const id = `code-editor-${index}`;
+                
+                // 存储原始代码
+                originalCodes[id] = textarea.value;
+                
+                // 初始化CodeMirror编辑器
+                codeEditors[id] = CodeMirror.fromTextArea(textarea, {
+                    mode: { name: "python", version: 3, singleLineStringErrors: false },
+                    theme: "monokai",
+                    lineNumbers: true,
+                    indentUnit: 4,
+                    tabSize: 4,
+                    indentWithTabs: false,
+                    lineWrapping: true,
+                    autofocus: false
+                });
+
+                // 添加运行按钮事件
+                const runButton = runner.querySelector('.code-runner-btn-run');
+                if (runButton) {
+                    runButton.addEventListener('click', () => runCode(index));
+                }
+
+                // 添加折叠按钮事件
+                const collapseButton = runner.querySelector('.code-runner-btn-collapse');
+                if (collapseButton) {
+                    collapseButton.addEventListener('click', () => toggleCollapse(runner));
+                }
+
+                // 添加悬浮按钮
+                const actionsDiv = runner.querySelector('.code-runner-actions');
+                if (actionsDiv) {
+                    const floatButton = document.createElement('button');
+                    floatButton.className = 'code-runner-btn code-runner-btn-float';
+                    floatButton.textContent = '悬浮';
+                    floatButton.addEventListener('click', () => toggleFloat(runner));
+                    actionsDiv.appendChild(floatButton);
+                    
+                    // 添加重置按钮
+                    const resetButton = document.createElement('button');
+                    resetButton.className = 'code-runner-btn code-runner-btn-reset';
+                    resetButton.textContent = '重置';
+                    resetButton.addEventListener('click', () => resetCode(index));
+                    actionsDiv.appendChild(resetButton);
+                }
+            });
+        }
+
+        // 切换悬浮状态
+        function toggleFloat(runner) {
+            const floatButton = runner.querySelector('.code-runner-btn-float');
+            if (runner.classList.contains('floating')) {
+                runner.classList.remove('floating');
+                if (floatButton) {
+                    floatButton.textContent = '悬浮';
+                }
+            } else {
+                runner.classList.add('floating');
+                if (floatButton) {
+                    floatButton.textContent = '取消悬浮';
+                }
+            }
+        }
+
+        // 重置代码
+        function resetCode(index) {
+            const id = `code-editor-${index}`;
+            const editor = codeEditors[id];
+            const runner = document.querySelectorAll('.code-runner')[index];
+            const outputElement = runner.querySelector('.code-output');
+            
+            // 恢复原始代码
+            if (editor && originalCodes[id]) {
+                editor.setValue(originalCodes[id]);
+            }
+            
+            // 重置输出
+            if (outputElement) {
+                outputElement.textContent = '点击运行按钮查看输出';
+                outputElement.classList.remove('error');
+            }
+        }
+
+        // 运行代码
+        async function runCode(index) {
+            if (!pyodide) {
+                alert('Pyodide is not initialized yet. Please wait.');
+                return;
+            }
+
+            const runner = document.querySelectorAll('.code-runner')[index];
+            const editor = codeEditors[`code-editor-${index}`];
+            const outputElement = runner.querySelector('.code-output');
+            const runButton = runner.querySelector('.code-runner-btn-run');
+
+            // 显示加载状态
+            runButton.textContent = '运行中...';
+            runButton.disabled = true;
+            outputElement.textContent = 'Running...';
+            outputElement.classList.remove('error');
+
+            try {
+                const code = editor.getValue();
+                
+                // 重定向stdout和stderr
+                let output = '';
+                pyodide.globals.set('print', (text) => {
+                    output += text + '\n';
+                });
+
+                // 运行代码
+                await pyodide.runPythonAsync(code);
+                
+                // 显示输出
+                outputElement.textContent = output || 'No output';
+                outputElement.classList.remove('error');
+            } catch (error) {
+                // 显示错误
+                outputElement.textContent = error.message;
+                outputElement.classList.add('error');
+            } finally {
+                // 恢复按钮状态
+                runButton.textContent = '运行';
+                runButton.disabled = false;
+            }
+        }
+
+        // 切换折叠状态
+        function toggleCollapse(runner) {
+            const content = runner.querySelector('.code-runner-content');
+            const button = runner.querySelector('.code-runner-btn-collapse');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                button.textContent = '折叠';
+            } else {
+                content.style.display = 'none';
+                button.textContent = '展开';
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initPyodide();
+            initCodeEditors();
+        });
+    </script>
 </body>
 </html>

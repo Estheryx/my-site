@@ -12,12 +12,12 @@
                 extend: {
                     colors: {
                         primary: '#E6F7FF',
-                        secondary: '#F9F0F4',
-                        accent: '#E6FFE6',
-                        purple: '#F0E6FF',
+                        secondary: '#F0F9FF',
+                        accent: '#DBF5FF',
                         blue: '#667eea',
-                        pink: '#f472b6',
-                        green: '#34d399',
+                        lightBlue: '#93C5FD',
+                        skyBlue: '#3B82F6',
+                        babyBlue: '#A5F3FC',
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -41,72 +41,349 @@
             .skill-bar {
                 transition: width 1s ease-in-out;
             }
+            .decorative-circle {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(147, 197, 253, 0.2);
+                z-index: 0;
+            }
+            .decorative-wave {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100px;
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2393C5FD" fill-opacity="0.3" d="M0,224L48,218.7C96,213,192,203,288,181.3C384,160,480,128,576,117.3C672,107,768,117,864,144C960,171,1056,213,1152,218.7C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+                background-size: cover;
+                background-repeat: no-repeat;
+                z-index: 0;
+            }
+            .floating {
+                animation: floating 6s ease-in-out infinite;
+            }
+            @keyframes floating {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+                100% { transform: translateY(0px); }
+            }
+            .pulse {
+                animation: pulse 3s ease-in-out infinite;
+            }
+            @keyframes pulse {
+                0% { transform: scale(1); opacity: 0.7; }
+                50% { transform: scale(1.05); opacity: 1; }
+                100% { transform: scale(1); opacity: 0.7; }
+            }
+            .star {
+                position: absolute;
+                background: white;
+                border-radius: 50%;
+                animation: twinkle 3s ease-in-out infinite;
+                z-index: 0;
+            }
+            @keyframes twinkle {
+                0% { opacity: 0.3; transform: scale(1); }
+                50% { opacity: 1; transform: scale(1.2); }
+                100% { opacity: 0.3; transform: scale(1); }
+            }
+            .bg-blur {
+                backdrop-filter: blur(10px);
+            }
+            .nav-scrolled {
+                background-color: rgba(230, 247, 255, 0.95);
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+            .hover-lift {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+            .fade-in {
+                animation: fadeIn 1s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .parallax {
+                transform-style: preserve-3d;
+                perspective: 1000px;
+            }
+            .parallax-element {
+                transition: transform 0.5s ease;
+            }
+            .bubble {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(147, 197, 253, 0.3);
+                animation: float 8s ease-in-out infinite;
+                z-index: 0;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px) translateX(0px); }
+                25% { transform: translateY(-15px) translateX(10px); }
+                50% { transform: translateY(-5px) translateX(20px); }
+                75% { transform: translateY(-10px) translateX(5px); }
+                100% { transform: translateY(0px) translateX(0px); }
+            }
+            .heart {
+                position: absolute;
+                color: #FF6B9D;
+                font-size: 20px;
+                animation: heartbeat 1.5s ease-in-out infinite;
+                z-index: 0;
+            }
+            @keyframes heartbeat {
+                0% { transform: scale(1); }
+                25% { transform: scale(1.2); }
+                50% { transform: scale(1); }
+                75% { transform: scale(1.2); }
+                100% { transform: scale(1); }
+            }
+            .cloud {
+                position: absolute;
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 50%;
+                animation: drift 20s linear infinite;
+                z-index: 0;
+            }
+            @keyframes drift {
+                0% { transform: translateX(-200px); }
+                100% { transform: translateX(calc(100vw + 200px)); }
+            }
+            .rainbow {
+                position: absolute;
+                background: linear-gradient(to right, #FF6B9D, #FFA07A, #FFD700, #98FB98, #87CEEB, #DDA0DD);
+                opacity: 0.3;
+                border-radius: 50%;
+                z-index: 0;
+            }
+            .raindrop {
+                position: absolute;
+                width: 2px;
+                height: 20px;
+                background: rgba(147, 197, 253, 0.5);
+                border-radius: 0 0 50% 50%;
+                animation: fall 3s linear infinite;
+                z-index: 0;
+            }
+            @keyframes fall {
+                0% { transform: translateY(-100px); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { transform: translateY(100vh); opacity: 0; }
+            }
+            .sparkle {
+                position: absolute;
+                color: #FFD700;
+                animation: sparkle 2s ease-in-out infinite;
+                z-index: 0;
+            }
+            @keyframes sparkle {
+                0% { opacity: 0; transform: scale(0); }
+                50% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(0); }
+            }
+            .flower {
+                position: absolute;
+                z-index: 0;
+            }
+            .flower-center {
+                width: 10px;
+                height: 10px;
+                background: #FFD700;
+                border-radius: 50%;
+                position: relative;
+            }
+            .petal {
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                background: #FF6B9D;
+                border-radius: 50%;
+                animation: petal-bounce 2s ease-in-out infinite;
+            }
+            @keyframes petal-bounce {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+            }
+            .butterfly {
+                position: absolute;
+                font-size: 16px;
+                animation: flutter 4s ease-in-out infinite;
+                z-index: 0;
+            }
+            @keyframes flutter {
+                0% { transform: translate(0, 0) rotate(0deg); }
+                25% { transform: translate(20px, -10px) rotate(10deg); }
+                50% { transform: translate(40px, 0) rotate(0deg); }
+                75% { transform: translate(20px, 10px) rotate(-10deg); }
+                100% { transform: translate(0, 0) rotate(0deg); }
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-primary font-sans">
+    <!-- 背景装饰气泡 -->
+    <div class="bubble w-24 h-24 top-20 left-20" style="animation-delay: 0s;"></div>
+    <div class="bubble w-16 h-16 top-40 right-30" style="animation-delay: 2s;"></div>
+    <div class="bubble w-20 h-20 bottom-40 left-30" style="animation-delay: 4s;"></div>
+    <div class="bubble w-12 h-12 bottom-20 right-20" style="animation-delay: 6s;"></div>
+    
+    <!-- 背景装饰星星 -->
+    <div class="star w-1 h-1 top-10 left-10" style="animation-delay: 0s;"></div>
+    <div class="star w-1 h-1 top-20 left-30" style="animation-delay: 0.5s;"></div>
+    <div class="star w-1 h-1 top-30 left-20" style="animation-delay: 1s;"></div>
+    <div class="star w-1 h-1 top-15 left-40" style="animation-delay: 1.5s;"></div>
+    <div class="star w-1 h-1 top-25 left-50" style="animation-delay: 2s;"></div>
+    <div class="star w-1 h-1 bottom-10 right-10" style="animation-delay: 2.5s;"></div>
+    <div class="star w-1 h-1 bottom-20 right-30" style="animation-delay: 3s;"></div>
+    <div class="star w-1 h-1 bottom-30 right-20" style="animation-delay: 3.5s;"></div>
+    <div class="star w-1 h-1 bottom-15 right-40" style="animation-delay: 4s;"></div>
+    <div class="star w-1 h-1 bottom-25 right-50" style="animation-delay: 4.5s;"></div>
+    
+    <!-- 可爱装饰心形 -->
+    <div class="heart top-32 left-16" style="animation-delay: 0s;"><i class="fa fa-heart"></i></div>
+    <div class="heart top-48 left-64" style="animation-delay: 0.3s; color: #FFB6C1;"><i class="fa fa-heart"></i></div>
+    <div class="heart top-64 left-128" style="animation-delay: 0.6s; color: #FF69B4;"><i class="fa fa-heart"></i></div>
+    <div class="heart bottom-32 right-16" style="animation-delay: 0.9s;"><i class="fa fa-heart"></i></div>
+    <div class="heart bottom-48 right-64" style="animation-delay: 1.2s; color: #FFB6C1;"><i class="fa fa-heart"></i></div>
+    
+    <!-- 可爱装饰云朵 -->
+    <div class="cloud top-40" style="width: 60px; height: 30px; animation-delay: 0s;"></div>
+    <div class="cloud top-60" style="width: 80px; height: 40px; animation-delay: 5s;"></div>
+    <div class="cloud top-80" style="width: 50px; height: 25px; animation-delay: 10s;"></div>
+    
+    <!-- 可爱装饰雨滴 -->
+    <div class="raindrop left-16" style="animation-delay: 0s;"></div>
+    <div class="raindrop left-32" style="animation-delay: 0.5s;"></div>
+    <div class="raindrop left-48" style="animation-delay: 1s;"></div>
+    <div class="raindrop left-64" style="animation-delay: 1.5s;"></div>
+    <div class="raindrop left-80" style="animation-delay: 2s;"></div>
+    <div class="raindrop left-96" style="animation-delay: 2.5s;"></div>
+    
+    <!-- 可爱装饰闪烁星星 -->
+    <div class="sparkle top-24 left-24" style="animation-delay: 0s;"><i class="fa fa-star"></i></div>
+    <div class="sparkle top-40 left-48" style="animation-delay: 0.7s;"><i class="fa fa-star"></i></div>
+    <div class="sparkle top-56 left-72" style="animation-delay: 1.4s;"><i class="fa fa-star"></i></div>
+    <div class="sparkle bottom-24 right-24" style="animation-delay: 2.1s;"><i class="fa fa-star"></i></div>
+    <div class="sparkle bottom-40 right-48" style="animation-delay: 2.8s;"><i class="fa fa-star"></i></div>
+    
+    <!-- 可爱装饰蝴蝶 -->
+    <div class="butterfly top-36 left-40" style="animation-delay: 0s; color: #FF69B4;"><i class="fa fa-paper-plane"></i></div>
+    <div class="butterfly top-52 left-80" style="animation-delay: 1s; color: #87CEEB;"><i class="fa fa-paper-plane"></i></div>
+    <div class="butterfly bottom-36 right-40" style="animation-delay: 2s; color: #DDA0DD;"><i class="fa fa-paper-plane"></i></div>
+    
+    <!-- 可爱装饰彩虹 -->
+    <div class="rainbow top-12 right-12" style="width: 100px; height: 50px;"></div>
+    
+    <!-- 可爱装饰小花 -->
+    <div class="flower bottom-20 left-20">
+        <div class="flower-center">
+            <div class="petal" style="top: -6px; left: 1px; animation-delay: 0s;"></div>
+            <div class="petal" style="top: 1px; left: 8px; animation-delay: 0.2s;"></div>
+            <div class="petal" style="top: 8px; left: 1px; animation-delay: 0.4s;"></div>
+            <div class="petal" style="top: 1px; left: -6px; animation-delay: 0.6s;"></div>
+            <div class="petal" style="top: -3px; left: -3px; animation-delay: 0.8s;"></div>
+            <div class="petal" style="top: -3px; left: 6px; animation-delay: 1s;"></div>
+            <div class="petal" style="top: 6px; left: 6px; animation-delay: 1.2s;"></div>
+            <div class="petal" style="top: 6px; left: -3px; animation-delay: 1.4s;"></div>
+        </div>
+    </div>
+    <div class="flower bottom-40 right-20">
+        <div class="flower-center" style="background: #FFA07A;">
+            <div class="petal" style="top: -6px; left: 1px; background: #FFA07A; animation-delay: 0s;"></div>
+            <div class="petal" style="top: 1px; left: 8px; background: #FFA07A; animation-delay: 0.3s;"></div>
+            <div class="petal" style="top: 8px; left: 1px; background: #FFA07A; animation-delay: 0.6s;"></div>
+            <div class="petal" style="top: 1px; left: -6px; background: #FFA07A; animation-delay: 0.9s;"></div>
+            <div class="petal" style="top: -3px; left: -3px; background: #FFA07A; animation-delay: 1.2s;"></div>
+            <div class="petal" style="top: -3px; left: 6px; background: #FFA07A; animation-delay: 1.5s;"></div>
+            <div class="petal" style="top: 6px; left: 6px; background: #FFA07A; animation-delay: 1.8s;"></div>
+            <div class="petal" style="top: 6px; left: -3px; background: #FFA07A; animation-delay: 2.1s;"></div>
+        </div>
+    </div>
+    
     <!-- 导航栏 -->
-    <nav class="fixed top-0 left-0 right-0 bg-white bg-opacity-90 backdrop-blur-sm shadow-sm z-50">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 bg-primary bg-opacity-90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-blue-600">周欣怡</a>
+            <a href="#" class="text-xl font-bold text-skyBlue hover-lift">周欣怡</a>
             <div class="hidden md:flex space-x-6">
-                <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">关于我</a>
-                <a href="#education" class="text-gray-600 hover:text-blue-600 transition-colors">教育背景</a>
-                <a href="#skills" class="text-gray-600 hover:text-blue-600 transition-colors">技能</a>
-                <a href="#hobbies" class="text-gray-600 hover:text-blue-600 transition-colors">兴趣爱好</a>
-                <a href="#projects" class="text-gray-600 hover:text-blue-600 transition-colors">作品</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">联系方式</a>
-                <a href="python-course.html" class="text-gray-600 hover:text-blue-600 transition-colors">Python课程</a>
+                <a href="#about" class="text-skyBlue hover:text-blue transition-colors hover-lift">关于我</a>
+                <a href="#education" class="text-skyBlue hover:text-blue transition-colors hover-lift">教育背景</a>
+                <a href="#skills" class="text-skyBlue hover:text-blue transition-colors hover-lift">技能</a>
+                <a href="#hobbies" class="text-skyBlue hover:text-blue transition-colors hover-lift">兴趣爱好</a>
+                <a href="#projects" class="text-skyBlue hover:text-blue transition-colors hover-lift">作品</a>
+                <a href="#contact" class="text-skyBlue hover:text-blue transition-colors hover-lift">联系方式</a>
+                <a href="python-course.html" class="text-skyBlue hover:text-blue transition-colors hover-lift">Python课程</a>
             </div>
-            <button class="md:hidden text-gray-600">
+            <button class="md:hidden text-skyBlue hover-lift">
                 <i class="fa fa-bars text-xl"></i>
             </button>
         </div>
     </nav>
 
     <!-- 个人介绍 -->
-    <section id="about" class="pt-32 pb-20 bg-gradient-to-br from-primary to-secondary">
-        <div class="container mx-auto px-4 text-center">
+    <section id="about" class="pt-32 pb-20 bg-gradient-to-br from-primary to-accent relative overflow-hidden">
+        <!-- 装饰性圆形 -->
+        <div class="decorative-circle w-64 h-64 top-10 left-10"></div>
+        <div class="decorative-circle w-48 h-48 bottom-10 right-10"></div>
+        <div class="decorative-circle w-32 h-32 top-1/2 left-1/4"></div>
+        
+        <!-- 可爱装饰元素 -->
+        <div class="absolute top-20 left-20 text-2xl text-pink-300 floating"><i class="fa fa-star"></i></div>
+        <div class="absolute top-32 right-24 text-xl text-pink-400 floating" style="animation-delay: 0.5s;"><i class="fa fa-sun-o"></i></div>
+        <div class="absolute bottom-32 left-24 text-lg text-yellow-300 floating" style="animation-delay: 1s;"><i class="fa fa-moon-o"></i></div>
+        <div class="absolute bottom-20 right-16 text-2xl text-pink-300 floating" style="animation-delay: 1.5s;"><i class="fa fa-heart"></i></div>
+        
+        <div class="container mx-auto px-4 text-center relative z-10">
             <div class="flex flex-col items-center mb-8">
-                <div class="w-32 h-32 rounded-full bg-blue-100 flex items-center justify-center mb-6">
-                    <i class="fa fa-user text-4xl text-blue-500"></i>
+                <div class="w-32 h-32 rounded-full bg-lightBlue flex items-center justify-center mb-6 floating">
+                    <i class="fa fa-user text-4xl text-skyBlue"></i>
                 </div>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2 text-shadow">周欣怡</h1>
-                <p class="text-xl text-gray-600 mb-4">广东科学技术职业学院</p>
-                <p class="text-gray-600 max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold text-skyBlue mb-2 text-shadow floating">周欣怡</h1>
+                <p class="text-xl text-blue mb-4 floating" style="animation-delay: 0.5s">广东科学技术职业学院</p>
+                <p class="text-blue-700 max-w-2xl floating" style="animation-delay: 1s">
                     我是一名热爱学习和探索的学生，对前端开发和设计有着浓厚的兴趣。
                     性格开朗，善于沟通，喜欢团队合作，希望通过不断学习提升自己的专业能力。
                 </p>
             </div>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#projects" class="px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors shadow-md">
+                <a href="#projects" class="px-6 py-3 bg-skyBlue text-white rounded-full hover:bg-blue transition-colors shadow-md floating" style="animation-delay: 1.5s">
                     查看我的作品
                 </a>
-                <a href="#contact" class="px-6 py-3 bg-white text-blue-500 rounded-full hover:bg-gray-50 transition-colors shadow-md border border-blue-200">
+                <a href="#contact" class="px-6 py-3 bg-white text-skyBlue rounded-full hover:bg-secondary transition-colors shadow-md border border-lightBlue floating" style="animation-delay: 2s">
                     联系我
                 </a>
             </div>
         </div>
+        <div class="decorative-wave"></div>
     </section>
 
     <!-- 教育背景 -->
-    <section id="education" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
+    <section id="education" class="py-20 bg-secondary relative overflow-hidden">
+        <!-- 可爱装饰元素 -->
+        <div class="absolute top-10 left-10 text-2xl text-yellow-300 floating"><i class="fa fa-book"></i></div>
+        <div class="absolute top-20 right-16 text-xl text-pink-300 floating" style="animation-delay: 0.7s;"><i class="fa fa-graduation-cap"></i></div>
+        <div class="absolute bottom-16 left-20 text-lg text-blue-300 floating" style="animation-delay: 1.4s;"><i class="fa fa-lightbulb-o"></i></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">教育背景</h2>
-                <p class="text-gray-600">我的学习经历</p>
+                <h2 class="text-3xl font-bold text-skyBlue mb-2">教育背景</h2>
+                <p class="text-blue-700">我的学习经历</p>
             </div>
             <div class="max-w-3xl mx-auto">
-                <div class="relative pl-8 border-l-2 border-blue-200">
+                <div class="relative pl-8 border-l-2 border-lightBlue">
                     <div class="mb-12 relative">
-                        <div class="absolute -left-[41px] w-6 h-6 rounded-full bg-blue-500 border-4 border-white"></div>
-                        <div class="bg-primary rounded-lg p-6 shadow-sm">
+                        <div class="absolute -left-[41px] w-6 h-6 rounded-full bg-skyBlue border-4 border-white"></div>
+                        <div class="bg-primary rounded-lg p-6 shadow-sm card-hover">
                             <div class="flex justify-between items-center mb-2">
-                                <h3 class="text-xl font-bold text-gray-800">广东科学技术职业学院</h3>
-                                <span class="text-blue-500 font-medium">2022 - 2025</span>
+                                <h3 class="text-xl font-bold text-skyBlue">广东科学技术职业学院</h3>
+                                <span class="text-skyBlue font-medium">2022 - 2025</span>
                             </div>
-                            <p class="text-gray-600 mb-3">专科 | 计算机应用技术</p>
-                            <p class="text-gray-600">
+                            <p class="text-blue-700 mb-3">专科 | 计算机应用技术</p>
+                            <p class="text-blue-700">
                                 主修课程：HTML/CSS、JavaScript、Java、数据库原理、计算机网络等。
                                 在校期间积极参加社团活动，担任班级学习委员，成绩优异。
                             </p>
@@ -118,63 +395,201 @@
     </section>
 
     <!-- 技能展示 -->
-    <section id="skills" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
+    <section id="skills" class="py-20 bg-accent relative overflow-hidden">
+        <!-- 装饰性圆形 -->
+        <div class="decorative-circle w-40 h-40 top-20 right-10"></div>
+        <div class="decorative-circle w-24 h-24 bottom-20 left-10"></div>
+        
+        <!-- 可爱装饰元素 -->
+        <div class="absolute top-12 left-12 text-2xl text-green-300 floating"><i class="fa fa-code"></i></div>
+        <div class="absolute top-24 right-20 text-xl text-purple-300 floating" style="animation-delay: 0.8s;"><i class="fa fa-laptop"></i></div>
+        <div class="absolute bottom-24 left-16 text-lg text-pink-300 floating" style="animation-delay: 1.6s;"><i class="fa fa-paint-brush"></i></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">技能展示</h2>
-                <p class="text-gray-600">我的专业技能</p>
+                <h2 class="text-3xl font-bold text-skyBlue mb-2 floating">技能展示</h2>
+                <p class="text-blue-700 floating" style="animation-delay: 0.3s">我的专业技能</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white rounded-lg p-6 shadow-sm">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">专业技能</h3>
+                <div class="bg-white rounded-lg p-6 shadow-sm card-hover">
+                    <h3 class="text-xl font-bold text-skyBlue mb-4">专业技能</h3>
                     <div class="space-y-4">
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">HTML/CSS</span>
-                                <span class="text-gray-600">90%</span>
+                                <span class="text-blue-700">HTML/CSS</span>
+                                <span class="text-blue-700">90%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="skill-bar bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">JavaScript</span>
-                                <span class="text-gray-600">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="skill-bar bg-blue-500 h-2 rounded-full" style="width: 80%"></div>
+                            <div class="w-full bg-lightBlue rounded-full h-2">
+                                <div class="skill-bar bg-skyBlue h-2 rounded-full" style="width: 90%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">Java</span>
-                                <span class="text-gray-600">70%</span>
+                                <span class="text-blue-700">JavaScript</span>
+                                <span class="text-blue-700">80%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="skill-bar bg-blue-500 h-2 rounded-full" style="width: 70%"></div>
+                            <div class="w-full bg-lightBlue rounded-full h-2">
+                                <div class="skill-bar bg-skyBlue h-2 rounded-full" style="width: 80%"></div>
                             </div>
                         </div>
                         <div>
                             <div class="flex justify-between mb-1">
-                                <span class="text-gray-700">数据库</span>
-                                <span class="text-gray-600">65%</span>
+                                <span class="text-blue-700">Java</span>
+                                <span class="text-blue-700">70%</span>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="skill-bar bg-blue-500 h-2 rounded-full" style="width: 65%"></div>
+                            <div class="w-full bg-lightBlue rounded-full h-2">
+                                <div class="skill-bar bg-skyBlue h-2 rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-blue-700">数据库</span>
+                                <span class="text-blue-700">65%</span>
+                            </div>
+                            <div class="w-full bg-lightBlue rounded-full h-2">
+                                <div class="skill-bar bg-skyBlue h-2 rounded-full" style="width: 65%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg p-6 shadow-sm">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">个人技能</h3>
+                <div class="bg-white rounded-lg p-6 shadow-sm card-hover">
+                    <h3 class="text-xl font-bold text-skyBlue mb-4">个人技能</h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-accent rounded-full text-green-700">团队合作</span>
-                        <span class="px-4 py-2 bg-secondary rounded-full text-pink-700">沟通能力</span>
-                        <span class="px-4 py-2 bg-primary rounded-full text-blue-700">学习能力</span>
-                        <span class="px-4 py-2 bg-purple rounded-full text-purple-700">创新思维</span>
-                        <span class="px-4 py-2 bg-accent rounded-full text-green-700">时间管理</span>
-                        <span class="px-4 py-2 bg-secondary rounded-full text-pink-700">问题解决</span>
+                        <span class="px-4 py-2 bg-primary rounded-full text-skyBlue pulse" style="animation-delay: 0.1s">团队合作</span>
+                        <span class="px-4 py-2 bg-secondary rounded-full text-skyBlue pulse" style="animation-delay: 0.2s">沟通能力</span>
+                        <span class="px-4 py-2 bg-accent rounded-full text-skyBlue pulse" style="animation-delay: 0.3s">学习能力</span>
+                        <span class="px-4 py-2 bg-lightBlue rounded-full text-skyBlue pulse" style="animation-delay: 0.4s">创新思维</span>
+                        <span class="px-4 py-2 bg-primary rounded-full text-skyBlue pulse" style="animation-delay: 0.5s">时间管理</span>
+                        <span class="px-4 py-2 bg-secondary rounded-full text-skyBlue pulse" style="animation-delay: 0.6s">问题解决</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 兴趣爱好 -->
+    <section id="hobbies" class="py-20 bg-secondary relative overflow-hidden">
+        <!-- 装饰性圆形 -->
+        <div class="decorative-circle w-32 h-32 top-10 left-10"></div>
+        <div class="decorative-circle w-40 h-40 bottom-10 right-10"></div>
+        
+        <!-- 可爱装饰元素 -->
+        <div class="absolute top-16 left-16 text-2xl text-orange-300 floating"><i class="fa fa-music"></i></div>
+        <div class="absolute top-8 right-24 text-xl text-green-300 floating" style="animation-delay: 1s;"><i class="fa fa-camera"></i></div>
+        <div class="absolute bottom-16 left-20 text-lg text-purple-300 floating" style="animation-delay: 2s;"><i class="fa fa-heartbeat"></i></div>
+        <div class="absolute bottom-8 right-16 text-2xl text-pink-300 floating" style="animation-delay: 0.5s;"><i class="fa fa-paint-brush"></i></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-skyBlue mb-2 floating">兴趣爱好</h2>
+                <p class="text-blue-700 floating" style="animation-delay: 0.3s">我的兴趣爱好，让生活更加丰富多彩</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 阅读 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm card-hover">
+                    <div class="h-32 bg-primary flex items-center justify-center">
+                        <i class="fa fa-book text-3xl text-skyBlue floating"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-skyBlue mb-2">阅读</h3>
+                        <p class="text-blue-700 text-sm mb-3">
+                            喜欢阅读各类书籍，尤其是文学作品和技术书籍。
+                        </p>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-1 bg-primary rounded-full text-xs text-skyBlue">文学</span>
+                            <span class="px-2 py-1 bg-primary rounded-full text-xs text-skyBlue">技术</span>
+                            <span class="px-2 py-1 bg-primary rounded-full text-xs text-skyBlue">历史</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 音乐 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm card-hover">
+                    <div class="h-32 bg-accent flex items-center justify-center">
+                        <i class="fa fa-music text-3xl text-skyBlue floating" style="animation-delay: 0.2s"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-skyBlue mb-2">音乐</h3>
+                        <p class="text-blue-700 text-sm mb-3">
+                            喜欢听各种类型的音乐，也学习过钢琴。
+                        </p>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-1 bg-accent rounded-full text-xs text-skyBlue">流行</span>
+                            <span class="px-2 py-1 bg-accent rounded-full text-xs text-skyBlue">古典</span>
+                            <span class="px-2 py-1 bg-accent rounded-full text-xs text-skyBlue">钢琴</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 摄影 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm card-hover">
+                    <div class="h-32 bg-lightBlue flex items-center justify-center">
+                        <i class="fa fa-camera text-3xl text-skyBlue floating" style="animation-delay: 0.4s"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-skyBlue mb-2">摄影</h3>
+                        <p class="text-blue-700 text-sm mb-3">
+                            喜欢用相机记录生活中的美好瞬间。
+                        </p>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-1 bg-lightBlue rounded-full text-xs text-skyBlue">风景</span>
+                            <span class="px-2 py-1 bg-lightBlue rounded-full text-xs text-skyBlue">人像</span>
+                            <span class="px-2 py-1 bg-lightBlue rounded-full text-xs text-skyBlue">街拍</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 编程 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm card-hover">
+                    <div class="h-32 bg-primary flex items-center justify-center">
+                        <i class="fa fa-code text-3xl text-skyBlue floating" style="animation-delay: 0.6s"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-skyBlue mb-2">编程</h3>
+                        <p class="text-blue-700 text-sm mb-3">
+                            热爱编程，喜欢通过代码解决问题。
+                        </p>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-1 bg-primary rounded-full text-xs text-skyBlue">Python</span>
+                            <span class="px-2 py-1 bg-primary rounded-full text-xs text-skyBlue">JavaScript</span>
+                            <span class="px-2 py-1 bg-primary rounded-full text-xs text-skyBlue">前端开发</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 运动 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm card-hover">
+                    <div class="h-32 bg-accent flex items-center justify-center">
+                        <i class="fa fa-heartbeat text-3xl text-skyBlue floating" style="animation-delay: 0.8s"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-skyBlue mb-2">运动</h3>
+                        <p class="text-blue-700 text-sm mb-3">
+                            喜欢各种运动，尤其是跑步、瑜伽和游泳。
+                        </p>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-1 bg-accent rounded-full text-xs text-skyBlue">跑步</span>
+                            <span class="px-2 py-1 bg-accent rounded-full text-xs text-skyBlue">瑜伽</span>
+                            <span class="px-2 py-1 bg-accent rounded-full text-xs text-skyBlue">游泳</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 绘画 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm card-hover">
+                    <div class="h-32 bg-lightBlue flex items-center justify-center">
+                        <i class="fa fa-paint-brush text-3xl text-skyBlue floating" style="animation-delay: 1s"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold text-skyBlue mb-2">绘画</h3>
+                        <p class="text-blue-700 text-sm mb-3">
+                            喜欢绘画，尤其是水彩画和素描。
+                        </p>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="px-2 py-1 bg-lightBlue rounded-full text-xs text-skyBlue">水彩</span>
+                            <span class="px-2 py-1 bg-lightBlue rounded-full text-xs text-skyBlue">素描</span>
+                            <span class="px-2 py-1 bg-lightBlue rounded-full text-xs text-skyBlue">插画</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -182,61 +597,70 @@
     </section>
 
     <!-- 作品展示 -->
-    <section id="projects" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
+    <section id="projects" class="py-20 bg-primary relative overflow-hidden">
+        <!-- 装饰性圆形 -->
+        <div class="decorative-circle w-48 h-48 top-10 right-10"></div>
+        <div class="decorative-circle w-32 h-32 bottom-10 left-10"></div>
+        
+        <!-- 可爱装饰元素 -->
+        <div class="absolute top-12 left-12 text-2xl text-blue-300 floating"><i class="fa fa-rocket"></i></div>
+        <div class="absolute top-24 right-16 text-xl text-purple-300 floating" style="animation-delay: 0.6s;"><i class="fa fa-star"></i></div>
+        <div class="absolute bottom-20 left-16 text-lg text-yellow-300 floating" style="animation-delay: 1.2s;"><i class="fa fa-lightbulb-o"></i></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">作品展示</h2>
-                <p class="text-gray-600">我的个人项目</p>
+                <h2 class="text-3xl font-bold text-skyBlue mb-2 floating">作品展示</h2>
+                <p class="text-blue-700 floating" style="animation-delay: 0.3s">我的个人项目</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- 作品1 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-sm card-hover">
-                    <div class="h-48 bg-primary flex items-center justify-center">
-                        <i class="fa fa-code text-4xl text-blue-500"></i>
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fa fa-code text-4xl text-skyBlue floating"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">个人博客网站</h3>
-                        <p class="text-gray-600 mb-4">使用HTML、CSS和JavaScript开发的个人博客网站，支持文章发布和评论功能。</p>
+                        <h3 class="text-xl font-bold text-skyBlue mb-2">个人博客网站</h3>
+                        <p class="text-blue-700 mb-4">使用HTML、CSS和JavaScript开发的个人博客网站，支持文章发布和评论功能。</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-primary rounded-full text-sm text-blue-700">HTML/CSS</span>
-                            <span class="px-3 py-1 bg-primary rounded-full text-sm text-blue-700">JavaScript</span>
+                            <span class="px-3 py-1 bg-secondary rounded-full text-sm text-skyBlue pulse">HTML/CSS</span>
+                            <span class="px-3 py-1 bg-secondary rounded-full text-sm text-skyBlue pulse" style="animation-delay: 0.2s">JavaScript</span>
                         </div>
-                        <a href="#" class="text-blue-500 hover:text-blue-700 transition-colors flex items-center">
+                        <a href="#" class="text-skyBlue hover:text-blue transition-colors flex items-center">
                             查看详情 <i class="fa fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                 </div>
                 <!-- 作品2 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-sm card-hover">
-                    <div class="h-48 bg-secondary flex items-center justify-center">
-                        <i class="fa fa-shopping-cart text-4xl text-pink-500"></i>
+                    <div class="h-48 bg-accent flex items-center justify-center">
+                        <i class="fa fa-shopping-cart text-4xl text-skyBlue floating" style="animation-delay: 0.4s"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">电商网站前端</h3>
-                        <p class="text-gray-600 mb-4">模拟电商网站的前端界面，包含商品展示、购物车和结算功能。</p>
+                        <h3 class="text-xl font-bold text-skyBlue mb-2">电商网站前端</h3>
+                        <p class="text-blue-700 mb-4">模拟电商网站的前端界面，包含商品展示、购物车和结算功能。</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-primary rounded-full text-sm text-blue-700">HTML/CSS</span>
-                            <span class="px-3 py-1 bg-primary rounded-full text-sm text-blue-700">JavaScript</span>
-                            <span class="px-3 py-1 bg-primary rounded-full text-sm text-blue-700">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-accent rounded-full text-sm text-skyBlue pulse" style="animation-delay: 0.3s">HTML/CSS</span>
+                            <span class="px-3 py-1 bg-accent rounded-full text-sm text-skyBlue pulse" style="animation-delay: 0.4s">JavaScript</span>
+                            <span class="px-3 py-1 bg-accent rounded-full text-sm text-skyBlue pulse" style="animation-delay: 0.5s">Tailwind CSS</span>
                         </div>
-                        <a href="#" class="text-blue-500 hover:text-blue-700 transition-colors flex items-center">
+                        <a href="#" class="text-skyBlue hover:text-blue transition-colors flex items-center">
                             查看详情 <i class="fa fa-arrow-right ml-2"></i>
                         </a>
                     </div>
                 </div>
                 <!-- 作品3 -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-sm card-hover">
-                    <div class="h-48 bg-accent flex items-center justify-center">
-                        <i class="fa fa-calculator text-4xl text-green-500"></i>
+                    <div class="h-48 bg-lightBlue flex items-center justify-center">
+                        <i class="fa fa-calculator text-4xl text-skyBlue floating" style="animation-delay: 0.8s"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">在线计算器</h3>
-                        <p class="text-gray-600 mb-4">功能齐全的在线计算器，支持基本运算和科学计算。</p>
+                        <h3 class="text-xl font-bold text-skyBlue mb-2">在线计算器</h3>
+                        <p class="text-blue-700 mb-4">功能齐全的在线计算器，支持基本运算和科学计算。</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-primary rounded-full text-sm text-blue-700">HTML/CSS</span>
-                            <span class="px-3 py-1 bg-primary rounded-full text-sm text-blue-700">JavaScript</span>
+                            <span class="px-3 py-1 bg-lightBlue rounded-full text-sm text-skyBlue pulse" style="animation-delay: 0.6s">HTML/CSS</span>
+                            <span class="px-3 py-1 bg-lightBlue rounded-full text-sm text-skyBlue pulse" style="animation-delay: 0.7s">JavaScript</span>
                         </div>
-                        <a href="#" class="text-blue-500 hover:text-blue-700 transition-colors flex items-center">
+                        <a href="#" class="text-skyBlue hover:text-blue transition-colors flex items-center">
                             查看详情 <i class="fa fa-arrow-right ml-2"></i>
                         </a>
                     </div>
@@ -246,75 +670,81 @@
     </section>
 
     <!-- 联系方式 -->
-    <section id="contact" class="py-20 bg-gradient-to-br from-primary to-secondary">
-        <div class="container mx-auto px-4">
+    <section id="contact" class="py-20 bg-gradient-to-br from-primary to-accent relative overflow-hidden">
+        <!-- 可爱装饰元素 -->
+        <div class="absolute top-10 left-10 text-2xl text-pink-300 floating"><i class="fa fa-envelope"></i></div>
+        <div class="absolute top-20 right-20 text-xl text-purple-300 floating" style="animation-delay: 0.5s;"><i class="fa fa-phone"></i></div>
+        <div class="absolute bottom-20 left-20 text-lg text-blue-300 floating" style="animation-delay: 1s;"><i class="fa fa-heart"></i></div>
+        <div class="absolute bottom-10 right-10 text-2xl text-yellow-300 floating" style="animation-delay: 1.5s;"><i class="fa fa-star"></i></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">联系方式</h2>
-                <p class="text-gray-600">与我取得联系</p>
+                <h2 class="text-3xl font-bold text-skyBlue mb-2">联系方式</h2>
+                <p class="text-blue-700">与我取得联系</p>
             </div>
             <div class="max-w-2xl mx-auto bg-white rounded-lg p-8 shadow-sm">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-4">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                                <i class="fa fa-envelope text-blue-500"></i>
+                                <i class="fa fa-envelope text-skyBlue"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-800">邮箱</h4>
-                                <a href="mailto:zhouxinyi@example.com" class="text-gray-600 hover:text-blue-500 transition-colors">
+                                <h4 class="font-bold text-skyBlue">邮箱</h4>
+                                <a href="mailto:zhouxinyi@example.com" class="text-blue-700 hover:text-skyBlue transition-colors">
                                     zhouxinyi@example.com
                                 </a>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                                <i class="fa fa-phone text-pink-500"></i>
+                                <i class="fa fa-phone text-skyBlue"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-800">电话</h4>
-                                <a href="tel:13800138000" class="text-gray-600 hover:text-blue-500 transition-colors">
+                                <h4 class="font-bold text-skyBlue">电话</h4>
+                                <a href="tel:13800138000" class="text-blue-700 hover:text-skyBlue transition-colors">
                                     138-0013-8000
                                 </a>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center">
-                                <i class="fa fa-map-marker text-green-500"></i>
+                                <i class="fa fa-map-marker text-skyBlue"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-800">地址</h4>
-                                <p class="text-gray-600">广东省广州市</p>
+                                <h4 class="font-bold text-skyBlue">地址</h4>
+                                <p class="text-blue-700">广东省广州市</p>
                             </div>
                         </div>
                     </div>
                     <div class="space-y-4">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-purple flex items-center justify-center">
-                                <i class="fa fa-github text-purple-500"></i>
+                            <div class="w-12 h-12 rounded-full bg-lightBlue flex items-center justify-center">
+                                <i class="fa fa-github text-skyBlue"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-800">GitHub</h4>
-                                <a href="https://github.com" target="_blank" class="text-gray-600 hover:text-blue-500 transition-colors">
+                                <h4 class="font-bold text-skyBlue">GitHub</h4>
+                                <a href="https://github.com" target="_blank" class="text-blue-700 hover:text-skyBlue transition-colors">
                                     github.com/zhouxinyi
                                 </a>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                                <i class="fa fa-weixin text-green-500"></i>
+                                <i class="fa fa-weixin text-skyBlue"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-800">微信</h4>
-                                <p class="text-gray-600">zhouxinyi_wx</p>
+                                <h4 class="font-bold text-skyBlue">微信</h4>
+                                <p class="text-blue-700">zhouxinyi_wx</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                                <i class="fa fa-weibo text-red-500"></i>
+                                <i class="fa fa-weibo text-skyBlue"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-gray-800">微博</h4>
-                                <a href="https://weibo.com" target="_blank" class="text-gray-600 hover:text-blue-500 transition-colors">
+                                <h4 class="font-bold text-skyBlue">微博</h4>
+                                <a href="https://weibo.com" target="_blank" class="text-blue-700 hover:text-skyBlue transition-colors">
                                     @周欣怡
                                 </a>
                             </div>
@@ -326,17 +756,17 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-skyBlue text-white py-8">
         <div class="container mx-auto px-4 text-center">
             <p class="mb-4">© 2026 周欣怡. 保留所有权利。</p>
             <div class="flex justify-center space-x-4">
-                <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                <a href="https://github.com" target="_blank" class="text-white hover:text-primary transition-colors">
                     <i class="fa fa-github text-xl"></i>
                 </a>
-                <a href="https://weixin.qq.com" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                <a href="https://weixin.qq.com" target="_blank" class="text-white hover:text-primary transition-colors">
                     <i class="fa fa-weixin text-xl"></i>
                 </a>
-                <a href="https://weibo.com" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                <a href="https://weibo.com" target="_blank" class="text-white hover:text-primary transition-colors">
                     <i class="fa fa-weibo text-xl"></i>
                 </a>
             </div>
@@ -354,6 +784,16 @@
             });
         });
 
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
         // 技能条动画
         function animateSkillBars() {
             const skillBars = document.querySelectorAll('.skill-bar');
@@ -363,6 +803,28 @@
                 setTimeout(() => {
                     bar.style.width = width;
                 }, 300);
+            });
+        }
+
+        // 淡入动画
+        function fadeInElements() {
+            const elements = document.querySelectorAll('section');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('fade-in');
+                }
+            });
+        }
+
+        // 视差效果
+        function parallaxEffect() {
+            const scrollPosition = window.scrollY;
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrollPosition * speed}px)`;
             });
         }
 
@@ -378,6 +840,17 @@
         }, { threshold: 0.1 });
 
         observer.observe(document.getElementById('skills'));
+
+        // 监听滚动事件
+        window.addEventListener('scroll', function() {
+            fadeInElements();
+            parallaxEffect();
+        });
+
+        // 页面加载时执行
+        window.addEventListener('load', function() {
+            fadeInElements();
+        });
     </script>
 </body>
 </html>
